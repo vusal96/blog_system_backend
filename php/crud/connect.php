@@ -30,10 +30,10 @@
          $query = mysqli_query($this->connect,$sql);
          return $query;
       }
-      public function insert($table,$title,$text,$img) {
-         $sql = "INSERT INTO $table (title,`text`,`img`) VALUES ('$title','$text','$img', CURRENT_TIMESTAMP)";
+      public function insert($sql) {
+        
          $query = mysqli_query($this->connect,$sql);
-         return $query;
+         // return $query;
       }
       public function delete($table,$id) {
          $sql = "DELETE FROM $table WHERE id=$id";

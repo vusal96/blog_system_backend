@@ -11,7 +11,7 @@
    <body>
       <div class="container">
          <div class="col-md-4 col-md-offset-3">
-            <form  action="" method="post">
+            <form  action="" method="post" enctype="multipart/form-data">
                <input class="form-control" type="title" name="title">
                <textarea class="form-control" name="text"></textarea>
                <input class="form-control" type="file" name="img">
@@ -22,17 +22,21 @@
    </body>
 </html>
 
-<?php
-include "config.php";
-if (isset($_POST["submit"])) {
+
+
+
+   <?php
+    if (isset($_POST["submit"])) {
             $title = $_POST["title"];
             $text = $_POST["text"];
-            $target_dir = "images/";
-            $target_file = rand().basename($_FILES["img"]["name"]);
-            move_uploaded_file($_FILES['img']['tmp_name'], $target_dir.$target_file);
-        $base= new Database ("localhost","root","","news");
-        $query=$base->insert('new',$title,$target_file,$text);
+            $file = @$_FILES['img'];
+            $target_dir = "../../images/";
+            $target_file = date("YmdHis").basename($file["name"]);
+            echo $target_file;
+            move_uploaded_file($file['tmp_name'], $target_dir.$target_file  );
+        $base= new Database ("localhost","root","","blog");
+        $base->insert("INSERT INTO  `news` (`title`,`text`,`img`) VALUES ('$title','$text','$target_file')");
         
-        header('Location:../login/index.php');
+        header('Location:../crud/admin.php');
 }
 ?>

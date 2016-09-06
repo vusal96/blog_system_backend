@@ -26,7 +26,7 @@
                <thead>
                   <tr>
                      <th>İD</th>
-                     <th>TİTLE</th>
+                     <th style="width:200px;">TİTLE</th>
                      <th>TEXT</th>
                      <th>TIME</th>
                      <th>CRUD</th>
@@ -41,6 +41,7 @@
                         <?php foreach($row as $key =>$value) {?>
                            <td><?php echo $value ?></td>
                         <?php } ?>
+
                            <td>
                               <a class="btn btn-success" href="update.php?id=<?php echo $row['id']?>">Update</a>
                               <a class="btn btn-danger" href="delete.php?id=<?php echo $row['id']?>">Delete</a>
